@@ -111,8 +111,40 @@ public class Main {
 
 	//Returns words adjacent to word if they are in the dictionary
 	//Gives priority to words obtained from changing letter to corresponding letter of end word
-	private static getNeighbors(String word){
+	//neighbors differ by from the word by only one letter
+	private static Queue<String> getNeighbors(String word) {
+		//queue to be returned with all of the neighbors
+		Queue<String> neighborsQueue = new LinkedList<String>();
 		
+		//counter to see if the two words differ by only one letter
+		int differenceCount = 0;
+		
+		//change the word to character array
+		char[] wordCharacters = word.toCharArray();
+				
+		//holds the neighboring word
+		String neighbor; 
+		
+		//get an iterator to iterate through the words of the dictionary
+		Iterator dictionaryIterator = dictionary.iterator();
+		
+		while(dictionaryIterator.hasNext()) {
+			neighbor = (String) dictionaryIterator.next();
+			char[] neighborCharacters = neighbor.toCharArray();
+			
+			for(int i = 0; i < word.length(); i++) {
+				if(wordCharacters[i] != neighborCharacters[i]) {
+					differenceCount++;
+				}
+			}
+			
+			if(differenceCount == 1) {
+				neighborsQueue.add(neighbor);
+			}
+			
+		}
+		
+		return neighborsQueue;
 	}	
 
 	/* Do not modify makeDictionary */
