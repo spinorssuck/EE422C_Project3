@@ -108,7 +108,7 @@ public class Main {
 		
 		Node first = new Node(start);
 		queue.add(first);
-		while(!(queue.isEmpty()){
+		while(!(queue.isEmpty())){
 			Node node = queue.remove();
 			String word = node.word;
 			Queue<String> neighbors = getNeighbors(word);
@@ -124,7 +124,7 @@ public class Main {
 						check = check.parent;
 					}	
 					visited.clear();
-					return Collections.reverse(WordLadder);
+					return WordLadder;
 				}	
 				queue.add(neighbor);
 			}
