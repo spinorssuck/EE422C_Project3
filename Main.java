@@ -17,10 +17,10 @@ package assignment3;
 import java.util.*;
 import java.io.*;
 
-public class Node{
-	String word;
+class Node{
+	public String word;
 	//Reference to previous node
-	Node parent;
+	public Node parent;
 	
 	public Node(String word,Node parent){
 			this.word = word;
@@ -84,7 +84,21 @@ public class Main {
 	
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
 		
-		Wueue<Node> queue = new Queue<Node>();
+		Queue<String> queue = new LinkedList<String>();
+		start = start.toUpperCase();end = end.toUpperCase();
+		visited.add(start);
+		
+		Node first = new Node(start);
+		queue.add(start);
+		while(!(queue.isEmpty()){
+			String word = queue.remove();
+			Queue<String> neighbors = getNeighbors(word);
+			//Adding neighbors to the queue
+			while(!neighbors.isEmpty()){
+				Node neighbor = new Node(neighbors.pop(),word);
+				queue.add(neighbor);
+			}
+		}	
 	}
     
 	
@@ -94,6 +108,10 @@ public class Main {
 	// TODO
 	// Other private static methods here
 
+	//Returns words adjacent to word if they are in the dictionary
+	private static getNeighbors(String word){
+		
+	}	
 
 	/* Do not modify makeDictionary */
 	public static Set<String>  makeDictionary () {
