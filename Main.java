@@ -124,40 +124,35 @@ public class Main {
 	//Returns words adjacent to word if they are in the dictionary
 	//Gives priority to words obtained from changing letter to corresponding letter of end word
 	//neighbors differ by from the word by only one letter
+	//neighbors differ by from the word by only one letter
 	private static Queue<String> getNeighbors(String word) {
 		//queue to be returned with all of the neighbors
 		Queue<String> neighborsQueue = new LinkedList<String>();
 		
-		//counter to see if the two words differ by only one letter
-		int differenceCount = 0;
-		
-		//change the word to character array
-		char[] wordCharacters = word.toCharArray();
-				
-		//holds the neighboring word
-		String neighbor; 
-		
-		//get an iterator to iterate through the words of the dictionary
-		Iterator dictionaryIterator = dictionary.iterator();
-		
-		while(dictionaryIterator.hasNext()) {
-			neighbor = (String) dictionaryIterator.next();
-			char[] neighborCharacters = neighbor.toCharArray();
-			
-			for(int i = 0; i < word.length(); i++) {
-				if(wordCharacters[i] != neighborCharacters[i]) {
-					differenceCount++;
+		for(int i = 0; i < 5; i++) {
+			for(char c = 'A'; c <= 'Z'; c++) {
+				String neighbor;
+				if(i == 0) {
+					neighbor = c + word.substring(1, 5);
 				}
+				
+				else if(i == 4) {
+					neighbor = word.substring(0, 4) + c;
+				}
+				
+				else {
+					neighbor = word.substring(0, i) + c + word.substring(i+1, 5);
+				}
+				
+				if(dictionary.contains(neighbor)) {
+					neighborsQueue.add(neighbor);
+				}		
 			}
-			
-			if(differenceCount == 1) {
-				neighborsQueue.add(neighbor);
-			}
-			
 		}
 		
 		return neighborsQueue;
-	}	
+	}
+		
 
 	/* Do not modify makeDictionary */
 	public static Set<String>  makeDictionary () {
