@@ -70,8 +70,26 @@ public class Main {
 	 */
 	public static ArrayList<String> parse(Scanner keyboard) {
 		// TO DO
-		return null;
+		
+		//input from the keyboard is two lowercase words separated by a space
+		//in addition, the command "/quit" must result in program terminating with no further input
+		
+		String firstWord = keyboard.next();
+		String secondWord = keyboard.next();
+		ArrayList<String> output = new ArrayList<String>();
+		
+		//checking if the first or second inputted word is /quit
+		if((firstWord.equals("/quit")) || (secondWord.equals("/quit"))){
+			return null;
+		}
+		
+		//otherwise, return the lists all in upper case
+		output.add(firstWord.toUpperCase());
+		output.add(secondWord.toUpperCase());
+		
+		return (output);
 	}
+
 	
 	public static ArrayList<String> getWordLadderDFS(String start, String end) {
 		
