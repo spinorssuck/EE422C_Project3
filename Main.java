@@ -84,18 +84,19 @@ public class Main {
 	
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
 		
-		Queue<String> queue = new LinkedList<String>();
+		Queue<Node> queue = new LinkedList<Node>();
 		start = start.toUpperCase();end = end.toUpperCase();
 		visited.add(start);
 		
 		Node first = new Node(start);
-		queue.add(start);
+		queue.add(first);
 		while(!(queue.isEmpty()){
-			String word = queue.remove();
+			Node node = queue.remove();
+			String word = node.word;
 			Queue<String> neighbors = getNeighbors(word);
 			//Adding neighbors to the queue
 			while(!neighbors.isEmpty()){
-				Node neighbor = new Node(neighbors.pop(),word);
+				Node neighbor = new Node(neighbors.remove(),node);
 				queue.add(neighbor);
 			}
 		}	
