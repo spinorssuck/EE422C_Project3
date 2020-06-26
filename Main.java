@@ -123,12 +123,13 @@ public class Main {
 						WordLadder.add(check.word);
 						check = check.parent;
 					}	
-					
+					visited.clear();
 					return Collections.reverse(WordLadder);
 				}	
 				queue.add(neighbor);
 			}
 		}
+		visited.clear();
 		return null;
 	}
     
