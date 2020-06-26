@@ -110,6 +110,7 @@ public class Main {
 	// Other private static methods here
 
 	//Returns words adjacent to word if they are in the dictionary
+	//Gives priority to words obtained from changing letter to corresponding letter of end word
 	private static getNeighbors(String word){
 		
 	}	
