@@ -97,9 +97,21 @@ public class Main {
 			//Adding neighbors to the queue
 			while(!neighbors.isEmpty()){
 				Node neighbor = new Node(neighbors.remove(),node);
+				//Creating arraylist if word is equal to end word
+				if(neighbor.word.equals(end)){
+					ArrayList<String> WordLadder = new ArrayList<String>();
+					Node check = neighbor;
+					while(check!=null){
+						WordLadder.add(check.word);
+						check = check.parent;
+					}	
+					
+					return Collections.reverse(WordLadder);
+				}	
 				queue.add(neighbor);
 			}
-		}	
+		}
+		return null;
 	}
     
 	
