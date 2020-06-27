@@ -54,7 +54,7 @@ public class Main {
 			ps = System.out;			// default output to Stdout
 		}
 		initialize();
-		System.out.println(getWordLadderDFS("smart","money"));
+		System.out.println(getWordLadderBFS("smart","money"));
 		// TODO methods to read in words, output ladder
 	}
 	
@@ -162,7 +162,14 @@ public class Main {
     
 	
 	public static void printLadder(ArrayList<String> ladder) {
-		
+		if(ladder.isEmpty())
+			System.out.println("no word ladder can be found between "+start.toLowerCase()+" and "+end.toLowerCase()+".");
+		else{
+			System.out.println("a "+(ladder.size()-2)+"-rung word ladder exists between "+start.toLowerCase()+" and "+end.toLowerCase()+".");
+			for(int i=0;i<ladder.size();i++){
+				System.out.println(ladder.get(i));
+			}	
+		}	
 	}
 	// TODO
 	// Other private static methods here
