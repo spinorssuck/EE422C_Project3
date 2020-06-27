@@ -96,14 +96,21 @@ public class Main {
 		// Returned list should be ordered start to end.  Include start and end.
 		// If ladder is empty, return list with just start and end.
 		// TODO some code
+		start = start.toUpperCase();end = end.toUpperCase();
+		visited.add(start);
+		Queue<String> neighbors = getNeighbors(start);
+		while(!neighbors.isEmpty()){
+			
+		}	
 		
-		return null; // replace this line later with real return
 	}
 	
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
 		
 		Queue<Node> queue = new LinkedList<Node>();
 		start = start.toUpperCase();end = end.toUpperCase();
+		
+		//Add start to visited set
 		visited.add(start);
 		
 		Node first = new Node(start);
