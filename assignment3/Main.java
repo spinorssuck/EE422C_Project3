@@ -54,7 +54,7 @@ public class Main {
 			ps = System.out;			// default output to Stdout
 		}
 		initialize();
-		System.out.println(getWordLadderBFS("smart","money"));
+		
 		// TODO methods to read in words, output ladder
 	}
 	
