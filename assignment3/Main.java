@@ -54,7 +54,7 @@ public class Main {
 			ps = System.out;			// default output to Stdout
 		}
 		initialize();
-		System.out.println(getWordLadderBFS("heard","hants"));
+		System.out.println(getWordLadderDFS("smart","money"));
 		// TODO methods to read in words, output ladder
 	}
 	
@@ -98,10 +98,25 @@ public class Main {
 		// TODO some code
 		start = start.toUpperCase();end = end.toUpperCase();
 		visited.add(start);
+		
+		ArrayList<String> list = new ArrayList<String>();
+		list.add(start);
+		if(start.equals(end))
+			return list;
 		Queue<String> neighbors = getNeighbors(start);
+		if(neighbors.isEmpty())
+			return null;
 		while(!neighbors.isEmpty()){
 			
-		}	
+			ArrayList<String> temp = getWordLadderDFS(neighbors.remove(),end);
+			
+			if(temp!=null){
+				ArrayList<String> temp1 = list;
+				temp1.addAll(temp);
+				return temp1;
+			}	
+		}
+		return null;
 		
 	}
 	
