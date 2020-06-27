@@ -4,8 +4,8 @@
  * Rithvik Reddy Golamari
  * rrg2477
  * <Student1 5-digit Unique No.>
- * <Student2 Name>
- * <Student2 EID>
+ * <Mina Abbassian>
+ * <mea2947>
  * <Student2 5-digit Unique No.>
  * Slip days used: <0>
  * Git URL:
@@ -39,6 +39,7 @@ public class Main {
 	
 	public static Set<String> dictionary;
 	public static HashSet<String> visited;
+	static boolean quitCommand; 
 	
 	public static void main(String[] args) throws Exception {
 		
@@ -56,11 +57,24 @@ public class Main {
 		initialize();
 		
 		// TODO methods to read in words, output ladder
+		while(!quitCommand) {
+			visited.clear();
+			ArrayList<String> input = parse(kb);
+			if(!quitCommand) {
+				String word1 = input.get(0);
+				String word2 = input.get(1);
+				ArrayList<String> test = getWordLadderBFS(word1, word2);
+				//ArrayList<String> test = getWordLadderDFS(word1, word2);
+				printLadder(test);		
+			}
+			
+		}
 	}
 	
 	public static void initialize() {
 		visited = new HashSet<String>();
 		dictionary = makeDictionary();
+		quitCommand = false;
 	}
 	
 	/**
@@ -80,7 +94,9 @@ public class Main {
 		
 		//checking if the first or second inputted word is /quit
 		if((firstWord.equals("/quit")) || (secondWord.equals("/quit"))){
+			quitCommand = true; 
 			return null;
+			
 		}
 		
 		//otherwise, return the lists all in upper case
@@ -163,9 +179,9 @@ public class Main {
 	
 	public static void printLadder(ArrayList<String> ladder) {
 		if(ladder.isEmpty())
-			System.out.println("no word ladder can be found between "+start.toLowerCase()+" and "+end.toLowerCase()+".");
+			System.out.println("no word ladder can be found between " + start.toLowerCase() + " and " + end.toLowerCase()+".");
 		else{
-			System.out.println("a "+(ladder.size()-2)+"-rung word ladder exists between "+start.toLowerCase()+" and "+end.toLowerCase()+".");
+			System.out.println("a "+(ladder.size()-2)+"-rung word ladder exists between " + start.toLowerCase()+" and " + end.toLowerCase()+".");
 			for(int i=0;i<ladder.size();i++){
 				System.out.println(ladder.get(i));
 			}	
@@ -253,3 +269,6 @@ public class Main {
 		return words;
 	}
 }
+
+
+
