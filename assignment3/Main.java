@@ -103,7 +103,7 @@ public class Main {
 		list.add(start);
 		if(start.equals(end))
 			return list;
-		Queue<String> neighbors = getNeighbors(start);
+		Queue<String> neighbors = getNeighbors(start, end);
 		if(neighbors.isEmpty())
 			return null;
 		while(!neighbors.isEmpty()){
@@ -137,7 +137,7 @@ public class Main {
 			//Add node to visited set
 			visited.add(word);
 			
-			Queue<String> neighbors = getNeighbors(word);
+			Queue<String> neighbors = getNeighbors(word, end);
 			//Adding neighbors to the queue
 			while(!neighbors.isEmpty()){
 				Node neighbor = new Node(neighbors.remove(),node);
@@ -178,9 +178,35 @@ public class Main {
 	//Gives priority to words obtained from changing letter to corresponding letter of end word
 	//neighbors differ by from the word by only one letter
 	//neighbors differ by from the word by only one letter
-	private static Queue<String> getNeighbors(String word) {
+	private static Queue<String> getNeighbors(String word, String end) {
 		//queue to be returned with all of the neighbors
 		Queue<String> neighborsQueue = new LinkedList<String>();
+		
+		//the priority changes 
+		//check the first 5 words
+		//direct changes from the start word letters to the end word letters 
+		
+		for(int i = 0; i < 5; i++) {
+			String checkWord = word;
+			String endWord = end;
+			if(i == 0) {
+				checkWord = endWord.charAt(0) + checkWord.substring(1, 5);
+			}
+			
+			else if(i == 4) {
+				checkWord = checkWord.substring(0, 4) + endWord.charAt(5);
+			}
+			
+			else {
+				checkWord = checkWord.substring(0, i) + endWord.charAt(i) + checkWord.substring(i+1, 5);
+			}
+			
+			if(dictionary.contains(checkWord)) {
+				if(!visited.contains(checkWord)) {
+					neighborsQueue.add(checkWord);
+				}
+			}		
+		}
 		
 		for(int i = 0; i < 5; i++) {
 			for(char c = 'A'; c <= 'Z'; c++) {
