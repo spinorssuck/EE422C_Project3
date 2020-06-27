@@ -54,7 +54,7 @@ public class Main {
 			ps = System.out;			// default output to Stdout
 		}
 		initialize();
-		System.out.println(getWordLadderBFS("money","smart"));
+		System.out.println(getWordLadderBFS("heard","hants"));
 		// TODO methods to read in words, output ladder
 	}
 	
@@ -111,12 +111,17 @@ public class Main {
 		while(!(queue.isEmpty())){
 			Node node = queue.remove();
 			String word = node.word;
+			
+			//Add node to visited set
+			visited.add(word);
+			
 			Queue<String> neighbors = getNeighbors(word);
 			//Adding neighbors to the queue
 			while(!neighbors.isEmpty()){
 				Node neighbor = new Node(neighbors.remove(),node);
 				//Creating arraylist if word is equal to end word
 				if(neighbor.word.equals(end)){
+
 					ArrayList<String> WordLadder = new ArrayList<String>();
 					Node check = neighbor;
 					while(check!=null){
@@ -162,9 +167,12 @@ public class Main {
 				else {
 					neighbor = word.substring(0, i) + c + word.substring(i+1, 5);
 				}
-				
+				//Checks if contained in dictionary
 				if(dictionary.contains(neighbor)) {
-					neighborsQueue.add(neighbor);
+					//Check if node is not already visited
+					if(!visited.contains(neighbor)){
+						neighborsQueue.add(neighbor);
+					}	
 				}		
 			}
 		}
@@ -178,7 +186,7 @@ public class Main {
 		Set<String> words = new HashSet<String>();
 		Scanner infile = null;
 		try {
-			infile = new Scanner (new File("five_letter_words.txt"));
+			infile = new Scanner (new File("assignment3/five_letter_words.txt"));
 		} catch (FileNotFoundException e) {
 			System.out.println("Dictionary File not Found!");
 			e.printStackTrace();
