@@ -4,8 +4,8 @@
  * Rithvik Reddy Golamari
  * rrg2477
  * <Student1 5-digit Unique No.>
- * <Student2 Name>
- * <Student2 EID>
+ * Mina Abbassian
+ * mea2947
  * <Student2 5-digit Unique No.>
  * Slip days used: <0>
  * Git URL:
@@ -38,7 +38,9 @@ class Node{
 public class Main {
 	
 	public static Set<String> dictionary;
-	public static HashSet<String> visited;
+	public static HashSet<String> visited = new HashSet<String>();
+	public static String start;
+	public static String end;
 	
 	public static void main(String[] args) throws Exception {
 		
@@ -56,10 +58,16 @@ public class Main {
 		initialize();
 		
 		// TODO methods to read in words, output ladder
+		ArrayList<String> words = parse(kb);
+		start = words.get(0);
+		end = words.get(1);
+		
+		//Print ladder
+		printLadder(getWordLadderBFS(start,end));
 	}
 	
 	public static void initialize() {
-		visited = new HashSet<String>();
+		visited.clear();
 		dictionary = makeDictionary();
 	}
 	
@@ -151,6 +159,7 @@ public class Main {
 						check = check.parent;
 					}	
 					visited.clear();
+					Collections.reverse(WordLadder);
 					return WordLadder;
 				}	
 				queue.add(neighbor);
@@ -194,7 +203,7 @@ public class Main {
 			}
 			
 			else if(i == 4) {
-				checkWord = checkWord.substring(0, 4) + endWord.charAt(5);
+				checkWord = checkWord.substring(0, 4) + endWord.charAt(4);
 			}
 			
 			else {
