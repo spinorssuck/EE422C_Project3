@@ -8,7 +8,7 @@
  * mea2947
  * <Student2 5-digit Unique No.>
  * Slip days used: <0>
- * Git URL:
+ * Git URL:https://github.com/spinorssuck/EE422C_Project3
  * Summer 2020
  */
 
@@ -65,6 +65,7 @@ public class Main {
 		
 		//Print ladder
 		printLadder(getWordLadderBFS(start,end));
+		printLadder(getWordLadderDFS(start,end));
 	}
 	
 	public static void initialize() {
@@ -102,7 +103,14 @@ public class Main {
 		return (output);
 	}
 
-	
+	/**
+	 * Finds a word ladder using Breadth First Search(BFS)
+	 * between two words
+	 * 
+	 * @param start The starting word of the ladder
+	 * @param end The end word of the ladder
+	 * @return word ladder between start and end including both.
+	 */
 	public static ArrayList<String> getWordLadderDFS(String start, String end) {
 		
 		// Returned list should be ordered start to end.  Include start and end.
@@ -138,6 +146,14 @@ public class Main {
 		
 	}
 	
+	/**
+	 * Finds a word ladder using Breadth First Search(BFS)
+	 * between two words
+	 * 
+	 * @param start The starting word of the ladder
+	 * @param end The end word of the ladder
+	 * @return word ladder between start and end including both.
+	 */
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
 		
 		Queue<Node> queue = new LinkedList<Node>();
@@ -181,7 +197,11 @@ public class Main {
 		return null;
 	}
     
-	
+	/**
+	 * Prints the word ladder(ArrayList) in the specified format
+	 * 
+	 * @param WordLadder
+	 */
 	public static void printLadder(ArrayList<String> ladder) {
 		if(ladder==null)
 			System.out.println("no word ladder can be found between "+startcopy.toLowerCase()+" and "+endcopy.toLowerCase()+".");
@@ -192,13 +212,16 @@ public class Main {
 			}	
 		}	
 	}
-	// TODO
-	// Other private static methods here
 
-	//Returns words adjacent to word if they are in the dictionary
-	//Gives priority to words obtained from changing letter to corresponding letter of end word
-	//neighbors differ by from the word by only one letter
-	//neighbors differ by from the word by only one letter
+	/**
+	 * Returns the word neighbors of start.
+	 * Ensures that the neighbor has not been visited.
+	 * Implements a way to print shorter DFS ladders.
+	 *
+	 * @param start The starting word of the ladder
+	 * @param end The end word of the ladder
+	 * @return Queue of neighbors
+	 */
 	private static Queue<String> getNeighbors(String word, String end) {
 		//queue to be returned with all of the neighbors
 		Queue<String> neighborsQueue = new LinkedList<String>();
