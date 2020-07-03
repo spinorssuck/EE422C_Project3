@@ -60,12 +60,13 @@ public class Main {
 		
 		// TODO methods to read in words, output ladder
 		ArrayList<String> words = parse(kb);
+		if(words!=null){
 		String start = words.get(0);
 		String end = words.get(1);
 		
 		//Print ladder
 		printLadder(getWordLadderBFS(start,end));
-		printLadder(getWordLadderDFS(start,end));
+		}
 	}
 	
 	public static void initialize() {
@@ -88,6 +89,10 @@ public class Main {
 		//in addition, the command "/quit" must result in program terminating with no further input
 		
 		String firstWord = keyboard.next();
+		if(firstWord.equals("/quit")){
+			keyboard.close();
+			return null;
+		}	
 		String secondWord = keyboard.next();
 		ArrayList<String> output = new ArrayList<String>();
 		
