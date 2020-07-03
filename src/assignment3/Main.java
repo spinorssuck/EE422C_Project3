@@ -9,7 +9,7 @@
  * <Student2 5-digit Unique No.>
  * Slip days used: <0>
  * Git URL:
- * Summer 2019
+ * Summer 2020
  */
 
 
@@ -39,8 +39,9 @@ public class Main {
 	
 	public static Set<String> dictionary;
 	public static HashSet<String> visited = new HashSet<String>();
-	public static String start;
-	public static String end;
+	public static String startcopy;
+	public static String endcopy;
+	public static boolean setflag;
 	
 	public static void main(String[] args) throws Exception {
 		
@@ -59,14 +60,17 @@ public class Main {
 		
 		// TODO methods to read in words, output ladder
 		ArrayList<String> words = parse(kb);
-		start = words.get(0);
-		end = words.get(1);
+		String start = words.get(0);
+		String end = words.get(1);
 		
 		//Print ladder
 		printLadder(getWordLadderBFS(start,end));
 	}
 	
 	public static void initialize() {
+		setflag=false;
+		startcopy = "";
+		endcopy = "";
 		visited.clear();
 		dictionary = makeDictionary();
 	}
@@ -104,7 +108,11 @@ public class Main {
 		// Returned list should be ordered start to end.  Include start and end.
 		// If ladder is empty, return list with just start and end.
 		// TODO some code
-		start = start.toUpperCase();end = end.toUpperCase();
+		if(setflag==false){
+			startcopy = start;
+			endcopy = end;
+			setflag=true;
+		}	
 		visited.add(start);
 		
 		ArrayList<String> list = new ArrayList<String>();
@@ -132,6 +140,8 @@ public class Main {
 		
 		Queue<Node> queue = new LinkedList<Node>();
 		start = start.toUpperCase();end = end.toUpperCase();
+		startcopy = start;
+		endcopy = end;
 		
 		//Add start to visited set
 		visited.add(start);
@@ -171,10 +181,10 @@ public class Main {
     
 	
 	public static void printLadder(ArrayList<String> ladder) {
-		if(ladder.isEmpty())
-			System.out.println("no word ladder can be found between "+start.toLowerCase()+" and "+end.toLowerCase()+".");
+		if(ladder==null)
+			System.out.println("no word ladder can be found between "+startcopy.toLowerCase()+" and "+endcopy.toLowerCase()+".");
 		else{
-			System.out.println("a "+(ladder.size()-2)+"-rung word ladder exists between "+start.toLowerCase()+" and "+end.toLowerCase()+".");
+			System.out.println("a "+(ladder.size()-2)+"-rung word ladder exists between "+startcopy.toLowerCase()+" and "+endcopy.toLowerCase()+".");
 			for(int i=0;i<ladder.size();i++){
 				System.out.println(ladder.get(i));
 			}	
@@ -250,7 +260,7 @@ public class Main {
 		Set<String> words = new HashSet<String>();
 		Scanner infile = null;
 		try {
-			infile = new Scanner (new File("assignment3/five_letter_words.txt"));
+			infile = new Scanner (new File("five_letter_words.txt"));
 		} catch (FileNotFoundException e) {
 			System.out.println("Dictionary File not Found!");
 			e.printStackTrace();
