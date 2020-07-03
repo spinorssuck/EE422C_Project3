@@ -8,7 +8,7 @@
  * mea2947
  * <Student2 5-digit Unique No.>
  * Slip days used: <0>
- * Git URL:https://github.com/spinorssuck/EE422C_Project3
+ * Git URL:https://github.com/spinorssuck/su20-pr3-pair-17
  * Summer 2020
  */
 
